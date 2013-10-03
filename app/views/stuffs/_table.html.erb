@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= link_to("Name ^", {}.merge(sort: :name), remote: true) %></th>
+      <th><%= link_to("Created ^", {}.merge(sort: :created_at), remote: true) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody id="stuffs_tbody">
+    <% stuffs.each do |stuff| %>
+      <%= render(stuff) %>
+    <% end %>
+  </tbody>
+</table>

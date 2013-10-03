@@ -7,11 +7,14 @@ class StuffsController < ApplicationController
   # GET /stuffs
   # GET /stuffs.json
   def index
-    @stuffs = Stuff.all
+    @stuffs = Stuff.scoped
+    @stuffs = @stuffs.order(params[:sort]) if params[:sort].present?
+    @stuff = Stuff.new
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render }# index.html.erb
       format.json { render json: @stuffs }
+      format.js { render }
     end
   end
 
@@ -51,9 +54,11 @@ class StuffsController < ApplicationController
       if @stuff.save
         format.html { redirect_to @stuff, notice: 'Stuff was successfully created.' }
         format.json { render json: @stuff, status: :created, location: @stuff }
+        format.js { render }
       else
         format.html { render action: "new" }
         format.json { render json: @stuff.errors, status: :unprocessable_entity }
+        format.js { render }
       end
     end
   end
