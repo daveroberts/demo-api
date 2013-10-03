@@ -20,7 +20,13 @@
     <div><%= flash.alert %></div>
   <% end %>
 
+  <marquee>
+    <%= image_tag("welcome_banner.jpg", style: 'height: 100px;') %>
+  </marquee>
+
 <%= yield %>
+
+  <div><%= image_tag("construction.jpg") %></div>
 
 </body>
 </html>
